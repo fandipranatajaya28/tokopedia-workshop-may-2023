@@ -83,17 +83,16 @@ Open `/bin/server.go`. Change the returned string from `Make it Happen` to `Make
 34        io.WriteString(res, "Make it Better\n")
 ```
 
-Once done, save the file and build the code:
+### Part 4: Deploy New Server
+
+Pretend you are Jenkins. An engineer made some change (Part 3) and now wants to deploy them.
+
+We can start by building the code and replace the old binary:
 ```
 go build -o ./bin/server ./server/server.go
 ```
 
-At this point, our old binary has already been replaced by the new one.
-
-
-### Part 4: Deploy New Server
-
-Previously, our Socketmaster were running with defined command `./bin/server`. We will ask Socketmaster to:
+Previously, we run the server under Socketmaster (Part 1) with defined command `./bin/server`. We will ask Socketmaster to:
 1. spawn new process with same command,
 2. wait for new process to be ready, and
 3. once new process ready, kill the old one
