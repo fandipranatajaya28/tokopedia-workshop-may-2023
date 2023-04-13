@@ -8,6 +8,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/fandipranatajaya28/tokopedia-workshop-may-2023/panic-handler/wrapper"
 	"golang.org/x/sync/errgroup"
 )
 
@@ -31,6 +32,8 @@ func main() {
 		Addr: fmt.Sprintf(":%d", port),
 	}
 
+	registerRoutes(httpServer)
+
 	eg, egCtx := errgroup.WithContext(ctx)
 
 	eg.Go(func() error {
@@ -53,4 +56,12 @@ func main() {
 	if err := eg.Wait(); err != nil {
 		fmt.Printf("Exit reason: %s \n", err)
 	}
+}
+
+func registerRoutes(server *http.Server) {
+	http.Handle("/test", wrapper.PanicHandleHTTP(func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("hello\n"))
+		panic("this panics")
+	}))
+	server.Handler = http.DefaultServeMux
 }
