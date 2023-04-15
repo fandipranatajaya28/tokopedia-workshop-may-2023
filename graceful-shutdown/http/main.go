@@ -19,11 +19,11 @@ var (
 )
 
 func main() {
-	// let us see HTTP serve without graceful shutdown
+	// Let us see HTTP serve without graceful shutdown
 	doServeHTTP()
 
-	// now let us implement graceful shutdown.
-	// can delete doServeHTTP to make playground simpler
+	// Now let us implement graceful shutdown.
+	// Can delete doServeHTTP to make playground simpler
 	// doServeHTTPGraceful()
 }
 
@@ -35,7 +35,7 @@ func doServeHTTP() {
 		return
 	}
 
-	fmt.Println("Process cleanup...") // this won't get called
+	fmt.Println("Process cleanup...") // This won't get called
 }
 
 func doServeHTTPGraceful() {
@@ -74,5 +74,5 @@ func doServeHTTPGraceful() {
 		fmt.Printf("Exit reason: %s \n", err)
 	}
 
-	fmt.Println("process cleanup...") // this should get called
+	fmt.Println("process cleanup...") // This should get called
 }

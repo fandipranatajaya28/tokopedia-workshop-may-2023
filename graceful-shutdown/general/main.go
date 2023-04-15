@@ -7,12 +7,12 @@ import (
 )
 
 func main() {
-	// let us see process without graceful will behave
+	// Let us see process without graceful will behave
 	doProcess()
 
-	// then, let us work on graceful implementation
-	// can delete doProcess function to make playground simpler
-	//doProcessGraceful()
+	// Then, let us work on graceful implementation
+	// Can delete doProcess function to make playground simpler
+	// doProcessGraceful()
 }
 
 func doProcess() {
@@ -39,7 +39,7 @@ func doProcess() {
 	}()
 
 	wg.Wait()
-	fmt.Println("Process cleanup...") // this won't get called
+	fmt.Println("Process cleanup...") // This won't get called
 }
 
 func doProcessGraceful() {
@@ -61,7 +61,7 @@ func doProcessGraceful() {
 	go func() {
 		defer wg.Done()
 
-		// TODO: convert into select case syntax and listen to context cancellateion
+		// TODO: convert into select case syntax and listen to context cancellation
 		for {
 			time.Sleep(1 * time.Second)
 			fmt.Println("Hello in the first loop")
@@ -72,7 +72,7 @@ func doProcessGraceful() {
 	go func() {
 		defer wg.Done()
 
-		// TODO: convert into select case syntax and listen to context cancellateion
+		// TODO: convert into select case syntax and listen to context cancellation
 		for {
 			time.Sleep(1 * time.Second)
 			fmt.Println("Hello in the second loop")
@@ -81,5 +81,5 @@ func doProcessGraceful() {
 
 	// Wait for ongoing process to finish
 	wg.Wait()
-	fmt.Println("Process cleanup...") // this should be called
+	fmt.Println("Process cleanup...") // This should be called
 }
