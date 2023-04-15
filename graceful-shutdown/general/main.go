@@ -81,5 +81,5 @@ func doProcessGraceful() {
 
 	// Wait for ongoing process to finish
 	wg.Wait()
-	fmt.Println("Process cleanup...") // This should be called
+	fmt.Println("Process cleanup...") // This should get called
 }

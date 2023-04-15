@@ -28,7 +28,7 @@ func main() {
 }
 
 func doServeHTTP() {
-	fmt.Println("Server is starting at port", port)
+	fmt.Println("HTTP server listening on port", port)
 	err := httpServer.ListenAndServe()
 	if err != nil {
 		fmt.Println("error when ListenAndServe")
@@ -74,5 +74,5 @@ func doServeHTTPGraceful() {
 		fmt.Printf("Exit reason: %s \n", err)
 	}
 
-	fmt.Println("process cleanup...") // This should get called
+	fmt.Println("Process cleanup...") // This should get called
 }

@@ -53,4 +53,6 @@ func FullCode_doServeHTTPGraceful() {
 	if err := eg.Wait(); err != nil {
 		fmt.Printf("Exit reason: %s \n", err)
 	}
+
+	fmt.Println("Process cleanup...") // This will be called
 }
