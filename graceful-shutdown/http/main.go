@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/fandipranatajaya28/tokopedia-workshop-may-2023/panic-handler/wrapper"
 	"golang.org/x/sync/errgroup"
 )
 
@@ -53,8 +52,6 @@ func doServeHTTPGraceful() {
 		// The returned context's Done channel is closed when the returned cancel function is called
 	}()
 
-	registerRoutes(httpServer)
-
 	// setup errgroup with context so we can listen to its cancellation
 	eg, egCtx := errgroup.WithContext(ctx)
 
@@ -78,12 +75,4 @@ func doServeHTTPGraceful() {
 	}
 
 	fmt.Println("Process cleanup...") // This should get called
-}
-
-func registerRoutes(server *http.Server) {
-	http.Handle("/test", wrapper.PanicHandleHTTP(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("hello\n"))
-		panic("this panics")
-	}))
-	server.Handler = http.DefaultServeMux
 }

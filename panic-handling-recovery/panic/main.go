@@ -10,12 +10,18 @@ func firstFunction() {
 
 func secondFunction() {
 	fmt.Println("Second function called")
-	panic("Panic happens")                  // Go library for panic
-	fmt.Println("Second function finished") // This will not get called
+
+	// TODO: execute panic to trigger termination of the application
+
+	fmt.Println("Second function finished") // This should not get called
+}
+
+func doPanic() {
+	fmt.Println("Panic example in Go")
+	firstFunction()
+	fmt.Println("All process finished") // This should not get called
 }
 
 func main() {
-	fmt.Println("Panic example in Go")
-	firstFunction()
-	fmt.Println("Function main done") // This will not get called
+	doPanic()
 }
