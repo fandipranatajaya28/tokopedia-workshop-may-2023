@@ -4,38 +4,61 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"os"
-	"os/signal"
-	"syscall"
 
 	"github.com/fandipranatajaya28/tokopedia-workshop-may-2023/panic-handler/wrapper"
 	"golang.org/x/sync/errgroup"
 )
 
-func main() {
-	ctx, cancel := context.WithCancel(context.Background())
+const (
+	port = 8000
+)
 
-	go func() {
-		// Listen for the termination signal
-		stop := make(chan os.Signal, 1) // we need to reserve to buffer size 1, so the notifier are not blocked
-		signal.Notify(stop, os.Interrupt, syscall.SIGTERM)
-
-		// Block until termination signal received
-		<-stop
-		// Essentially the cancel() is broadcasted to all the goroutines that call .Done()
-		// The returned context's Done channel is closed when the returned cancel function is called
-		cancel()
-	}()
-
-	port := 8000
-	httpServer := &http.Server{
+var (
+	httpServer = &http.Server{
 		Addr: fmt.Sprintf(":%d", port),
 	}
+)
+
+func main() {
+	// Let us see HTTP serve without graceful shutdown
+	doServeHTTP()
+
+	// Now let us implement graceful shutdown.
+	// Can delete doServeHTTP to make playground simpler
+	// doServeHTTPGraceful()
+}
+
+func doServeHTTP() {
+	fmt.Println("HTTP server listening on port", port)
+	err := httpServer.ListenAndServe()
+	if err != nil {
+		fmt.Println("error when ListenAndServe")
+		return
+	}
+
+	fmt.Println("Process cleanup...") // This won't get called
+}
+
+func doServeHTTPGraceful() {
+	// TODO: create context and its cancel function
+	ctx, _ := context.WithCancel(context.Background())
+
+	// TODO: setup SIGTERM listener
+	go func() {
+		// Listen for the termination signal
+
+		// Block until termination signal received
+
+		// Essentially the cancel() is broadcasted to all the goroutines that call .Done()
+		// The returned context's Done channel is closed when the returned cancel function is called
+	}()
 
 	registerRoutes(httpServer)
 
+	// setup errgroup with context so we can listen to its cancellation
 	eg, egCtx := errgroup.WithContext(ctx)
 
+	// setup HTTP listener
 	eg.Go(func() error {
 		fmt.Println("HTTP server listening on port", port)
 		err := httpServer.ListenAndServe()
@@ -43,19 +66,18 @@ func main() {
 		return err
 	})
 
+	// TODO: setup HTTP graceful shutdown
 	eg.Go(func() error {
-		// Block until cancel() is called
 		<-egCtx.Done()
-		fmt.Println("HTTP server start graceful shutdown on port", port)
-		err := httpServer.Shutdown(context.Background()) // Go library for HTTP server graceful shutdown
-		fmt.Println("HTTP server finish graceful shutdown on port", port)
-		return err
+		return nil
 	})
 
-	// Wait for ongoing process to finish
+	// wait for errgroup
 	if err := eg.Wait(); err != nil {
 		fmt.Printf("Exit reason: %s \n", err)
 	}
+
+	fmt.Println("Process cleanup...") // This should get called
 }
 
 func registerRoutes(server *http.Server) {
