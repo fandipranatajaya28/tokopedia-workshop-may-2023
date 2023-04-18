@@ -48,8 +48,8 @@ Once done, we can re-run the server under Socketmaster using following command:
 
 Running our server under Socketmaster require us to do some extra steps:
 ```
-socketmaster[73840] 2023/04/13 15:10:08 Listening on tcp://:8000                                            <-- extras
-socketmaster[73840] 2023/04/13 15:10:08 Starting ./bin/server [./bin/server]                          <-- extras
+socketmaster[73840] 2023/04/13 15:10:08 Listening on tcp://:8000 <-- extras
+socketmaster[73840] 2023/04/13 15:10:08 Starting ./bin/server [./bin/server] <-- extras
 socketmaster[73840] 2023/04/13 15:10:08 [73841] 2023/04/13 15:10:08 initiate new server
 socketmaster[73840] 2023/04/13 15:10:08 [73841] 2023/04/13 15:10:08 connecting to database...
 socketmaster[73840] 2023/04/13 15:10:09 [73841] 2023/04/13 15:10:09 database connected
@@ -58,9 +58,9 @@ socketmaster[73840] 2023/04/13 15:10:10 [73841] 2023/04/13 15:10:10 cache built
 socketmaster[73840] 2023/04/13 15:10:10 [73841] 2023/04/13 15:10:10 ping upstream service...
 socketmaster[73840] 2023/04/13 15:10:11 [73841] 2023/04/13 15:10:11 upstream ready
 socketmaster[73840] 2023/04/13 15:10:11 [73841] 2023/04/13 15:10:11 initiate server finished
-socketmaster[73840] 2023/04/13 15:10:11 [73841] 2023/04/13 15:10:11 socketmaster detected, listening on 3   <-- extras
+socketmaster[73840] 2023/04/13 15:10:11 [73841] 2023/04/13 15:10:11 socketmaster detected, listening on 3 <-- extras
 socketmaster[73840] 2023/04/13 15:10:11 [73841] 2023/04/13 15:10:11 http server running on address: :8000
-socketmaster[73840] 2023/04/13 15:10:11 [73841] 2023/04/13 15:10:11 successfully notify socketmaster        <-- extras
+socketmaster[73840] 2023/04/13 15:10:11 [73841] 2023/04/13 15:10:11 successfully notify socketmaster <-- extras
 socketmaster[73840] 2023/04/13 15:10:14 Failed to kill old process, because there's no one left in the group
 ```
 
