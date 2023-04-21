@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"runtime/debug"
 )
 
 func FullCode_panicHandleHTTP(command http.HandlerFunc) http.HandlerFunc {
@@ -13,6 +14,8 @@ func FullCode_panicHandleHTTP(command http.HandlerFunc) http.HandlerFunc {
 			if err := recover(); err != nil {
 				fmt.Printf("Panic message: %+v\n", err)
 				fmt.Println("Function recovered from the panic")
+				// use debug.PrintStack() if you want to trace the panic and print it
+				debug.PrintStack()
 			}
 		}()
 

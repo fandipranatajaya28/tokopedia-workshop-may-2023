@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"runtime/debug"
+)
 
 func FullCode_firstFunction() {
 	// Defer the process of recovery
@@ -9,6 +12,8 @@ func FullCode_firstFunction() {
 		if r := recover(); r != nil {
 			fmt.Printf("Panic message: %+v\n", r)
 			fmt.Println("First function recovered from the panic")
+			// use debug.PrintStack() if you want to trace the panic and print it
+			debug.PrintStack()
 		}
 	}()
 	fmt.Println("First function called")
