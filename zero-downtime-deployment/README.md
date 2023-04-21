@@ -1,6 +1,6 @@
 # Zero Downtime Deployment
 
-Socketmaster is an application where we can put our apps as its process child. Basically it helps us reloading server without losing current and incoming connections.
+Socketmaster is an application where we can put our apps as its process child. Basically it helps us reload the server without losing current and incoming connections.
 
 We will try to do simple service deployment while keeping our service alive (all the time) under Socketmaster.
 
@@ -92,7 +92,7 @@ We can start by building the code and replace the old binary:
 go build -o ./bin/server ./server/server.go
 ```
 
-Previously, we run the server under Socketmaster (Part 1) with defined command `./bin/server`. We will ask Socketmaster to:
+Previously, we run the server under Socketmaster (Part 2) with defined command `./bin/server`. We will ask Socketmaster to:
 1. spawn new process with same command,
 2. wait for new process to be ready, and
 3. once new process ready, kill the old one
