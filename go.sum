@@ -1,2 +1,6 @@
+github.com/gorilla/mux v1.8.0 h1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI=
+github.com/gorilla/mux v1.8.0/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB71So=
+github.com/tokopedia/socketmaster v1.1.2 h1:lo3fWoYcGN4hwV4vyI9bPPrmnI4LhvSuO3yEwyZkRSc=
+github.com/tokopedia/socketmaster v1.1.2/go.mod h1:f50v8sTK4Xlv9GZr67CpjlhiusETea9zhAAPWDqd29I=
 golang.org/x/sync v0.1.0 h1:wsuoTGHzEhffawBOhz5CYhcrV4IdKZbEyZjBMuTp12o=
 golang.org/x/sync v0.1.0/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
